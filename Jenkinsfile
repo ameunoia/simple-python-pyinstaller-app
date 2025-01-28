@@ -64,9 +64,8 @@ node {
             docker.image('cdrx/pyinstaller-linux:python2') {
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
-
             archiveArtifacts 'dist/add2vals'
-        } catch (Exception e) {
+        } catch (exc) {
             echo 'Failed Delivery Stage'
         }
     }
