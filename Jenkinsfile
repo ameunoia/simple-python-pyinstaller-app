@@ -60,13 +60,13 @@ node {
         junit 'test-reports/results.xml'
     }
     stage('Delivery') {
-        try {
+        // try {
             docker.image('cdrx/pyinstaller-linux:python2') {
                 sh 'pyinstaller --onefile sources/add2vals.py'
             }
-            archiveArtifacts 'dist/add2vals'
-        } catch (exc) {
-            echo 'Failed Delivery Stage'
-        }
+            // archiveArtifacts 'dist/add2vals'
+        // } catch (exc) {
+        //     echo 'Failed Delivery Stage'
+        // }
     }
 }
