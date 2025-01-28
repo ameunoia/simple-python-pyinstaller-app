@@ -48,12 +48,12 @@ node {
     stage('Checkout') {
         checkout scm
     }
-    stage('Build') {
+    stage('Build').inside {
         docker.image('python:3.9-alpine') {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
     }
-    stage('Test') {
+    stage('Test').inside {
         docker.image('qnib/pytest') {
             sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
         }
