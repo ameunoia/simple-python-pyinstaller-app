@@ -66,7 +66,7 @@ node {
             }
 
             archiveArtifacts 'dist/add2vals'
-        } catch {
+        } catch (Exception e) {
             echo 'Failed Delivery Stage'
         }
     }
