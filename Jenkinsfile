@@ -48,25 +48,16 @@ node {
     stage('Checkout') {
         checkout scm
     }
-    stage('Build').inside('-p 3000:3000') {
-        docker.image('python:3.9-alpine') {
+    stage('Build') {
+        docker.image('python:3.9-alpine').inside('-p 3000:3000') {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
     }
-    stage('Test').inside {
-        docker.image('qnib/pytest') {
+    stage('Test') {
+        docker.image('qnib/pytest').inside {
             sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
         }
         junit 'test-reports/results.xml'
     }
-    // stage('Delivery') {
-    //     // try {
-    //         docker.image('cdrx/pyinstaller-linux:python2') {
-    //             sh 'pyinstaller --onefile sources/add2vals.py'
-    //         }
-    //         // archiveArtifacts 'dist/add2vals'
-    //     // } catch (exc) {
-    //     //     echo 'Failed Delivery Stage'
-    //     // }
-    // }
+    stage('Delivery')
 }
