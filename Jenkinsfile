@@ -67,8 +67,7 @@ node {
                 echo 'Deploting to Vercel'
                 // sh 'pyinstaller --onefile sources/add2vals.py'
                 sh '''
-                    npm install -g vercel
-                    vercel --prod --token PwAHxxWNmkJ0wxOhoOKbvnwr
+                    npx vercel --prod --token PwAHxxWNmkJ0wxOhoOKbvnwr
                 '''
             }
         } catch (exc) {
