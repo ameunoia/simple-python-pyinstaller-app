@@ -61,6 +61,9 @@ node {
         }
         step([$class: 'JUnitResultArchiver', testResults: 'test-reports/results.xml'])
     }
+    stage('Manual Approval') {
+            input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
+        }
     stage('Deploy') {
         try {
             docker.image('node:18-alpine').inside {
