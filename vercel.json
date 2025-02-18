@@ -1,0 +1,8 @@
+{
+    "builds": [
+      { "src": "sources/add2vals.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "sources/add2vals.py" }
+    ]
+  }

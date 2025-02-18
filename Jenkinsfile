@@ -50,23 +50,29 @@ node {
     }
     stage('Build') {
         docker.image('python:3.9-alpine').inside('-p 3000:3000') {
+            echo 'Building Application'
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
         }
     }
     stage('Test') {
         docker.image('qnib/pytest').inside {
+            echo 'running test'
             sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
         }
-        junit 'test-reports/results.xml'
+        step([$class: 'JUnitResultArchiver', testResults: 'test-reports/results.xml'])
     }
-    stage('Delivery') {
+    stage('Deploy') {
         try {
-            docker.image('cdrx/pyinstaller-linux:python2').inside {
-                sh 'pyinstaller --onefile sources/add2vals.py'
+            docker.image('node:18-alpine').inside {
+                echo 'Deploting to Vercel'
+                // sh 'pyinstaller --onefile sources/add2vals.py'
+                sh '''
+                    npm install -g vercel
+                    vercel --prod --token PwAHxxWNmkJ0wxOhoOKbvnwr
+                '''
             }
-            archiveArtifacts 'dist/add2vals'
         } catch (exc) {
-            echo "failed delivery stage"
+            echo "failed deploy stage"
         }
     }
 }
