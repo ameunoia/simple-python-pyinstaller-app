@@ -71,6 +71,8 @@ node {
                 // sh 'pyinstaller --onefile sources/add2vals.py'
                 sh '''
                     npx vercel --prod --token PwAHxxWNmkJ0wxOhoOKbvnwr --yes --force
+                    sleep(time:1, unit:"MINUTES")
+                    npx vercel remove submission-cicd-pipeline-argasatya16-python --token PwAHxxWNmkJ0wxOhoOKbvnwr --yes
                 '''
             }
         } catch (exc) {
