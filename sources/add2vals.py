@@ -6,7 +6,6 @@ the calc.py library's 'add2' function.
 import sys
 import calc
 
-sys.path.append(os.path.join(os.path.dirname(__file__), 'sources'))
 argnumbers = len(sys.argv) - 1
 
 if argnumbers == 2 :
