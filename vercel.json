@@ -4,5 +4,10 @@
     ],
     "routes": [
       { "src": "/(.*)", "dest": "sources/add2vals.py" }
-    ]
+    ],
+    "functions": {
+    "api/*.py": {
+      "includeFiles": "sources/calc.py"
+    }
   }
+}
