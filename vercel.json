@@ -1,7 +1,7 @@
 {
     "functions": {
       "sources/add2vals.py": {
-        "runtime": "@vercel/python@3.9",
+        "runtime": "@vercel/python",
         "includeFiles": "sources/calc.py"
       }
     },
