@@ -1,13 +1,12 @@
 {
-    "builds": [
-      { "src": "sources/add2vals.py", "use": "@vercel/python" }
-    ],
+    "functions": {
+      "sources/add2vals.py": {
+        "runtime": "python",
+        "includeFiles": ["sources/calc.py"]
+      }
+    },
     "routes": [
       { "src": "/(.*)", "dest": "sources/add2vals.py" }
-    ],
-    "functions": {
-    "api/*.py": {
-      "includeFiles": "sources/calc.py"
-    }
+    ]
   }
-}
+  
