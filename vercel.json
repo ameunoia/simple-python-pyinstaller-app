@@ -2,11 +2,10 @@
     "functions": {
       "sources/add2vals.py": {
         "runtime": "python",
-        "includeFiles": ["sources/calc.py"]
+        "includeFiles": "sources/calc.py"
       }
     },
     "routes": [
       { "src": "/(.*)", "dest": "sources/add2vals.py" }
     ]
   }
-  
